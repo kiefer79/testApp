@@ -4,4 +4,8 @@
 
 ul#newslist li .title{
 	font-weight: bold;
+	display: block;
+	border: 1px solid black;
+	background: #666;
+	color: white;
 }

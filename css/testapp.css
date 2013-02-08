@@ -1,0 +1,7 @@
+#newstemplate {
+	display: none;
+}
+
+ul#newslist li .title{
+	font-weight: bold;
+}

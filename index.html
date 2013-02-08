@@ -19,7 +19,7 @@
 			//db.transaction(queryNews, newsQueryError, newsQuerySuccess);
 			
 			// get news from live server
-			//requestNews();
+			requestNews();
 			
 			/*
 			$('span.title').on("click", function(){
@@ -51,15 +51,9 @@
 				jsonp: 'jsoncallback',
 				success: function (data) {
 					jQuery.each(data, function(i, row) {
-						//console.log(row);
-						newitem = $('#newstemplate').clone(true, true);
-						newitem.find('.date').text(row.datetime);
-						newitem.find('.title').text(row.title);
-						newitem.find('.bodytext').text(row.bodytext);
-						newitem.show();
-						jQuery('#newslist').append(newitem.html());
-						
+						jQuery('#newslist').append('<div data-role="collapsible"><h3>'+row.title+'</h3><p>'+row.bodytext+'</p></div>');
 					});
+					$('#newslist').collapsibleset('refresh');
 				},
 				error: function() {
 					alert('eid error');
@@ -81,48 +75,41 @@
 	
 	<div data-role="content" class="ui-content">
 		
-		
-		<div data-role="fieldcontain">
-			<fieldset data-role="controlgroup" data-type="horizontal">
-				<input type="checkbox" name="kat1" id="kat1" class="custom" />
-				<label for="kat1">Kategorie 1</label>
-				<input type="checkbox" name="kat2" id="kat2" class="custom" />
-				<label for="kat2">Kategorie 2</label>
-				<input type="checkbox" name="kat3" id="kat3" class="custom" />
-				<label for="kat3">Kategorie 3</label>
-			</fieldset>
+		<ul data-role="listview">
+			<li data-role="collapsible" data-theme="a">
+				<h3>Kategorien-Filter anzeigen</h3>
+				<div  data-role="fieldcontain">
+			 	<fieldset data-role="controlgroup">
+					<input type="checkbox" name="kat1" id="kat1" class="custom" />
+					<label for="kat1">Kategorie1</label>
+					
+					<input type="checkbox" name="kat2" id="kat2" class="custom" />
+					<label for="kat2">Kategorie2</label>
+					
+					<input type="checkbox" name="kat3" id="kat3" class="custom" />
+					<label for="kat3">Kategorie3</label>
+
+					<input type="checkbox" name="kat4" id="kat4" class="custom" />
+					<label for="kat4">Kategorie4</label>
+			    </fieldset>
+			</li>
+		</ul>
+		<hr />
+		<p>
+			<div data-role="collapsible-set" data-theme="c" id="newslist"></div>
+		</p>
+		<div id="newstemplate" style="display:none;">
+			<div data-role="collapsible">
+				<h3>title</h3>
+				<p>content</p>
+			</div>
 		</div>
-		
-		
-		<div data-role="collapsible-set" data-theme="c" data-mini="true">
-			<div data-role="collapsible">
-				<h3>Section 1</h3>
-				<p>Collapsible content</p>
-			</div>
-			<div data-role="collapsible">
-				<h3>Section 2</h3>
-				<p>Collapsible content</p>
-			</div>
-			<div data-role="collapsible">
-				<h3>Section 3</h3>
-				<p>Collapsible content</p>
-			</div>
-		</div>
-		
 	</div>
 	
 	<div data-role="footer">
-		<h4>&copy; 2012 rootality.de</h4>
+		<h4>&copy; 2013 rootality.de</h4>
 	</div><!-- /footer -->
 	
-	<div id="newstemplate" style="display:none;">
-		<li>
-			<a href="#"><span class="title"></span><br /></a>
-			<span class="newsfold">
-				<span class="bodytext"></span>
-			</span>
-		</li>
-	</div>
 	
 </div><!-- /page -->
 

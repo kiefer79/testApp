@@ -17,8 +17,10 @@ var app = {
     onDeviceReady: function() {
 		
 		// test cordova api funcs
-		alert('Device: '+ device.name);
-		alert('Cordova: '+ device.cordova);
+		// alert('Device: '+ device.name);
+		// alert('Cordova: '+ device.cordova);
+		
+		alert('Hallo Julia!');
 		
 		// get news from live server
 		app.requestNews();

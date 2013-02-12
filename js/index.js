@@ -25,6 +25,13 @@ var app = {
 		
 		// get news from live server
 		app.requestNews();
+		
+		
+		document.addEventListener('push-notification', function(event) {
+			var notification = JSON.parse(event.notification);
+            navigator.notification.alert(notification.aps.alert);
+			pushNotification.setApplicationIconBadgeNumber(0);
+		});
     },
 			
 	online: function() {

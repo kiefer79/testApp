@@ -20,9 +20,29 @@
 		
     </head>
     <body>
-        <div data-role="page">
+		
+		<!-- Home -->
+		<div data-role="page" id="home" data-theme="a">
 			<div data-role="header">
 				<h1>Rootality News</h1>
+			</div>
+			<div data-role="content" data-theme="a">	
+				<a href="#news" data-role="button">News</a>
+				<a href="#dossier" data-role="button">Dossier</a>
+				<a href="#stellenanzeigen" data-role="button">Stellenanzeigen</a>
+			</div>
+			<div data-role="footer">
+				<p><a href="#news" data-role="button">News</a></p>
+				<p><a href="#dossier" data-role="button">Dossier</a></p>
+				<p><a href="#stellenanzeigen" data-role="button">Stellenanzeigen</a></p>
+			</div>
+		</div>
+		
+		<!-- News -->
+        <div data-role="page" id="news">
+			<div data-role="header">
+				<a href="#home" data-role="button">Home</a>
+				<h1>News</h1>
 			</div>
 			<div data-role="content" class="ui-content">
 				<ul data-role="listview">
@@ -56,8 +76,42 @@
 				</div>
 			</div>
 			<div data-role="footer">
-				<h4>&copy; 2013 rootality.de</h4>
-			</div><!-- /footer -->
+				<p><a href="#news" data-role="button">News</a></p>
+				<p><a href="#dossier" data-role="button">Dossier</a></p>
+				<p><a href="#stellenanzeigen" data-role="button">Stellenanzeigen</a></p>
+			</div>
 		</div><!-- /page -->
+		
+		<!-- Dossier -->
+		<div data-role="page" id="dossier" data-theme="a">
+			<div data-role="header">
+				<a href="#home" data-role="button">Home</a>
+				<h1>Dossier</h1>
+			</div>
+			<div data-role="content" data-theme="a">	
+				<h2>Dossier</h2>
+			</div>
+			<div data-role="footer">
+				<p><a href="#news" data-role="button">News</a></p>
+				<p><a href="#dossier" data-role="button">Dossier</a></p>
+				<p><a href="#stellenanzeigen" data-role="button">Stellenanzeigen</a></p>
+			</div>
+		</div>
+		
+		<!-- Stellenanzeigen -->
+		<div data-role="page" id="stellenanzeigen" data-theme="a">
+			<div data-role="header">
+				<a href="#home" data-role="button">Home</a>
+				<h1>Stellenanzeigen</h1>
+			</div>
+			<div data-role="content" data-theme="a">	
+				<h2>Stellenanzeigen</h2>
+			</div>
+			<div data-role="footer">
+				<p><a href="#news" data-role="button">News</a></p>
+				<p><a href="#dossier" data-role="button">Dossier</a></p>
+				<p><a href="#stellenanzeigen" data-role="button">Stellenanzeigen</a></p>
+			</div>
+		</div>
     </body>
 </html>

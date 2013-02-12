@@ -8,7 +8,8 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener("online", this.online, false);
+		document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
     //
@@ -20,11 +21,15 @@ var app = {
 		// alert('Device: '+ device.name);
 		// alert('Cordova: '+ device.cordova);
 		
-		alert('Hallo Julia!');
+		
 		
 		// get news from live server
 		app.requestNews();
     },
+			
+	online: function() {
+		alert(navigator.connection.type);
+	},
 	
 	initDB: function() {
 		var db = window.openDatabase("rootality.de", "1.0", "rootality.de", 1000000);

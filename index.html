@@ -1,191 +1,23 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-	<title>marktforschung.de News</title> 
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" /> -->
-	<!-- <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> -->
-	<!-- <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script> -->
-	<!-- <script src="js/cordova-2.4.0.js"></script> -->
-	<!-- <script src="js/db.js"></script> -->
-	
-	<script type="text/javascript">
-	
-		/*
-		document.addEventListener('deviceready', onDeviceReady, false);
-		
-		function onDeviceReady() {
-			alert('devReady');
-		
-			var phoneName = window.device.name;
-			var phoneName = device.name;
-			console.log(phoneName);
-			
-			checkConnection();
-			
-			
-		}
-	*/
-		
-		// $(document).ready(function(){
-			// console.log('document.ready');
-			
-			
-			
-			
-			// init local database
-			//console.log('init db');
-			var db = window.openDatabase("rootality.de", "1.0", "rootality.de", 1000000);
-			//db.transaction(createTables, dbError);
-			
-			/*
-			db.transaction(function(tx) {
-				tx.executeSql('CREATE TABLE IF NOT EXISTS news (uid unique, data)');
-			});
-			
-			
-			
-			// render news from local database
-			renderNews(db);
-			*/
-		   
-		    //get news from live server
-			requestNews(db);
-			
-			
-			
-		//});
-		
-		//document.addEventListener("deviceready", onDeviceReady, false);
-		//function onDeviceReady() {}
-		
-		function checkConnection() {
-			var networkState = navigator.connection.type;
-
-			var states = {};
-			states[Connection.UNKNOWN]  = 'Unknown connection';
-			states[Connection.ETHERNET] = 'Ethernet connection';
-			states[Connection.WIFI]     = 'WiFi connection';
-			states[Connection.CELL_2G]  = 'Cell 2G connection';
-			states[Connection.CELL_3G]  = 'Cell 3G connection';
-			states[Connection.CELL_4G]  = 'Cell 4G connection';
-			states[Connection.NONE]     = 'No network connection';
-
-			alert('Connection type: ' + states[networkState]);
-		}
-
-		
-		
-		
-		renderNews = function(db) {
-			db.transaction(function(tx) {
-				tx.executeSql('SELECT * FROM news', [], function(tx, results) {
-					
-					dataset = results.rows;
-					for (var i = 0, item = null; i < dataset.length; i++) {
-						item = dataset.item(i);
-						console.log(item['uid']);
-						console.log(item['data']['title']);
-					}
-				});
-			});
-		}
-		
-		// process ajax call for news items
-		function requestNews(db) {
-			console.log('requestNews');
-			jQuery.ajax({
-				url: "http://rootality.de/?eID=newsapp",
-				dataType: 'jsonp',
-				jsonp: 'jsoncallback',
-				success: function (data) {
-					jQuery.each(data, function(i, row) {
-						 jQuery('#newslist').append('<div data-role="collapsible"><h3>'+row.title+'</h3><p>'+row.bodytext+'</p></div>');
-						
-						/*
-						db.transaction(function(tx) {
-							tx.executeSql('INSERT INTO news(uid,data) VALUES (?,?)',[row.uid,row], function(tx) {
-								alert('success db insert');
-							});
-						});
-						*/
-						
-					});
-					$('#newslist').collapsibleset('refresh');
-				},
-				error: function() {
-					alert('eid error');
-				}
-			});
-		}
-		
-	</script>
-	
-	
-</head> 
-<body> 
-
-	
-	<div class="app">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div class="app">
             <h1>Apache Cordova</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
         </div>
-	
-<div data-role="page">
-
-	<div data-role="header">
-		<h1>Rootality News</h1>
-	</div>
-	
-	<div data-role="content" class="ui-content">
-		
-		<ul data-role="listview">
-			<li data-role="collapsible" data-theme="a">
-				<h3>Kategorien-Filter anzeigen</h3>
-				<div  data-role="fieldcontain">
-			 	<fieldset data-role="controlgroup">
-					<input type="checkbox" name="kat1" id="kat1" class="custom" />
-					<label for="kat1">Kategorie1</label>
-					
-					<input type="checkbox" name="kat2" id="kat2" class="custom" />
-					<label for="kat2">Kategorie2</label>
-					
-					<input type="checkbox" name="kat3" id="kat3" class="custom" />
-					<label for="kat3">Kategorie3</label>
-
-					<input type="checkbox" name="kat4" id="kat4" class="custom" />
-					<label for="kat4">Kategorie4</label>
-			    </fieldset>
-			</li>
-		</ul>
-		<hr />
-		<p>
-			<div data-role="collapsible-set" data-theme="c" id="newslist"></div>
-		</p>
-		<div id="newstemplate" style="display:none;">
-			<div data-role="collapsible">
-				<h3>title</h3>
-				<p>content</p>
-			</div>
-		</div>
-	</div>
-	
-	<div data-role="footer">
-		<h4>&copy; 2013 rootality.de</h4>
-	</div><!-- /footer -->
-	
-	
-</div><!-- /page -->
-
-
-<script type="text/javascript" src="js/cordova-2.4.0.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript">
-	app.initialize();
-</script>
-
-</body>
+        <script type="text/javascript" src="js/cordova-2.4.0.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
 </html>

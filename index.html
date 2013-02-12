@@ -5,19 +5,59 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
+		
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script type="text/javascript" src="js/db.js"></script>
+		<script type="text/javascript" src="js/cordova-2.4.0.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		
+		<script type="text/javascript">
+            app.initialize();
+			app.initDB();
+        </script>
+		
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="js/cordova-2.4.0.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+        <div data-role="page">
+			<div data-role="header">
+				<h1>Rootality News</h1>
+			</div>
+			<div data-role="content" class="ui-content">
+				<ul data-role="listview">
+					<li data-role="collapsible" data-theme="a">
+						<h3>Kategorien-Filter anzeigen</h3>
+						<div  data-role="fieldcontain">
+						<fieldset data-role="controlgroup">
+							<input type="checkbox" name="kat1" id="kat1" class="custom" />
+							<label for="kat1">Kategorie1</label>
+
+							<input type="checkbox" name="kat2" id="kat2" class="custom" />
+							<label for="kat2">Kategorie2</label>
+
+							<input type="checkbox" name="kat3" id="kat3" class="custom" />
+							<label for="kat3">Kategorie3</label>
+
+							<input type="checkbox" name="kat4" id="kat4" class="custom" />
+							<label for="kat4">Kategorie4</label>
+						</fieldset>
+					</li>
+				</ul>
+				<hr />
+				<p>
+					<div data-role="collapsible-set" data-theme="c" id="newslist"></div>
+				</p>
+				<div id="newstemplate" style="display:none;">
+					<div data-role="collapsible">
+						<h3>title</h3>
+						<p>content</p>
+					</div>
+				</div>
+			</div>
+			<div data-role="footer">
+				<h4>&copy; 2013 rootality.de</h4>
+			</div><!-- /footer -->
+		</div><!-- /page -->
     </body>
 </html>

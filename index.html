@@ -4,9 +4,10 @@
 	<title>marktforschung.de News</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<!-- <script src="js/cordova-2.4.0.js"></script> -->
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-	<script src="js/db.js"></script>
+	<!-- <script src="js/db.js"></script> -->
 	
 	<script type="text/javascript">
 		
@@ -14,24 +15,52 @@
 		$(document).ready(function(){
 			console.log('document.ready');
 			
+			var phoneName = window.device.name;
+			var phoneName = device.name;
+			console.log(phoneName);
+			
 			// init local database
-			console.log('init db');
+			//console.log('init db');
 			var db = window.openDatabase("rootality.de", "1.0", "rootality.de", 1000000);
 			//db.transaction(createTables, dbError);
 			
+			/*
 			db.transaction(function(tx) {
 				tx.executeSql('CREATE TABLE IF NOT EXISTS news (uid unique, data)');
 			});
 			
-			// get news from live server
-			requestNews(db);
+			
 			
 			// render news from local database
 			renderNews(db);
+			*/
+		   
+		   // get news from live server
+			requestNews(db);
+			
+			checkConnection();
+			
 		});
 		
 		//document.addEventListener("deviceready", onDeviceReady, false);
 		//function onDeviceReady() {}
+		
+		function checkConnection() {
+			var networkState = navigator.connection.type;
+
+			var states = {};
+			states[Connection.UNKNOWN]  = 'Unknown connection';
+			states[Connection.ETHERNET] = 'Ethernet connection';
+			states[Connection.WIFI]     = 'WiFi connection';
+			states[Connection.CELL_2G]  = 'Cell 2G connection';
+			states[Connection.CELL_3G]  = 'Cell 3G connection';
+			states[Connection.CELL_4G]  = 'Cell 4G connection';
+			states[Connection.NONE]     = 'No network connection';
+
+			alert('Connection type: ' + states[networkState]);
+		}
+
+		
 		
 		
 		renderNews = function(db) {
@@ -57,15 +86,15 @@
 				jsonp: 'jsoncallback',
 				success: function (data) {
 					jQuery.each(data, function(i, row) {
-						// jQuery('#newslist').append('<div data-role="collapsible"><h3>'+row.title+'</h3><p>'+row.bodytext+'</p></div>');
+						 jQuery('#newslist').append('<div data-role="collapsible"><h3>'+row.title+'</h3><p>'+row.bodytext+'</p></div>');
 						
-						
+						/*
 						db.transaction(function(tx) {
 							tx.executeSql('INSERT INTO news(uid,data) VALUES (?,?)',[row.uid,row], function(tx) {
 								alert('success db insert');
 							});
 						});
-						
+						*/
 						
 					});
 					$('#newslist').collapsibleset('refresh');

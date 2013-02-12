@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	<script src="js/db.js"></script>
 	
 	<script type="text/javascript">
 		
@@ -14,36 +15,41 @@
 			console.log('document.ready');
 			
 			// init local database
-			//var db = window.openDatabase("rootality.de", "1.0", "rootality.de", 1000000);
+			console.log('init db');
+			var db = window.openDatabase("rootality.de", "1.0", "rootality.de", 1000000);
 			//db.transaction(createTables, dbError);
-			//db.transaction(queryNews, newsQueryError, newsQuerySuccess);
+			
+			db.transaction(function(tx) {
+				tx.executeSql('CREATE TABLE IF NOT EXISTS news (uid unique, data)');
+			});
 			
 			// get news from live server
-			requestNews();
+			requestNews(db);
 			
-			/*
-			$('span.title').on("click", function(){
-				alert('test');
-				console.log('click');
-				if ($(this).next('.newsfold').hasClass('open')) {
-					console.log('click on open');
-					$(this).next('.newsfold').slideUp().removeClass('open');
-				} else {
-					console.log('click on closed');
-					$(this).next('.newsfold').slideDown().addClass('open');
-				}
-			});
-			*/
-			
-			// insert news
-			//db.transaction(insertNews, dbError, dbSuccess);
+			// render news from local database
+			renderNews(db);
 		});
 		
 		//document.addEventListener("deviceready", onDeviceReady, false);
 		//function onDeviceReady() {}
 		
+		
+		renderNews = function(db) {
+			db.transaction(function(tx) {
+				tx.executeSql('SELECT * FROM news', [], function(tx, results) {
+					
+					dataset = results.rows;
+					for (var i = 0, item = null; i < dataset.length; i++) {
+						item = dataset.item(i);
+						console.log(item['uid']);
+						console.log(item['data']['title']);
+					}
+				});
+			});
+		}
+		
 		// process ajax call for news items
-		requestNews = function() {
+		requestNews = function(db) {
 			console.log('requestNews');
 			jQuery.ajax({
 				url: "http://rootality.de/?eID=newsapp",
@@ -51,7 +57,16 @@
 				jsonp: 'jsoncallback',
 				success: function (data) {
 					jQuery.each(data, function(i, row) {
-						jQuery('#newslist').append('<div data-role="collapsible"><h3>'+row.title+'</h3><p>'+row.bodytext+'</p></div>');
+						// jQuery('#newslist').append('<div data-role="collapsible"><h3>'+row.title+'</h3><p>'+row.bodytext+'</p></div>');
+						
+						
+						db.transaction(function(tx) {
+							tx.executeSql('INSERT INTO news(uid,data) VALUES (?,?)',[row.uid,row], function(tx) {
+								alert('success db insert');
+							});
+						});
+						
+						
 					});
 					$('#newslist').collapsibleset('refresh');
 				},
@@ -70,7 +85,7 @@
 <div data-role="page">
 
 	<div data-role="header">
-		<h1>Rootality News</h1>
+		<h1>Rootality News Test123</h1>
 	</div>
 	
 	<div data-role="content" class="ui-content">

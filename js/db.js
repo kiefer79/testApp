@@ -1,8 +1,9 @@
-function insertNews(tx, uid, data) {
+function insertNews(tx, newuid, newdata) {
 	//tx.executeSql('INSERT INTO news (uid, data) VALUES (1, "Test1")');
 	//tx.executeSql('INSERT INTO news (uid, data) VALUES (2, "Test2")');
 	//tx.executeSql('INSERT INTO news (uid, data) VALUES (3, "Test3")');
-	tx.executeSql('INSERT INTO news (uid, data) VALUES (3, "Test3")');
+	//tx.executeSql('INSERT INTO news (uid, data) VALUES (4, "Test4")');
+	tx.executeSql('INSERT INTO news (uid, data) VALUES (newuid, newdata)');
 	
 	
 }

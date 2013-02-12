@@ -3,14 +3,15 @@
 <head> 
 	<title>marktforschung.de News</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-	<script src="js/cordova-2.4.0.js"></script>
+	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" /> -->
+	<!-- <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> -->
+	<!-- <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script> -->
+	<!-- <script src="js/cordova-2.4.0.js"></script> -->
 	<!-- <script src="js/db.js"></script> -->
 	
 	<script type="text/javascript">
-		
+	
+		/*
 		document.addEventListener('deviceready', onDeviceReady, false);
 		
 		function onDeviceReady() {
@@ -24,6 +25,7 @@
 			
 			
 		}
+	*/
 		
 		// $(document).ready(function(){
 			// console.log('document.ready');
@@ -123,6 +125,15 @@
 </head> 
 <body> 
 
+	
+	<div class="app">
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+        </div>
+	
 <div data-role="page">
 
 	<div data-role="header">
@@ -170,7 +181,11 @@
 </div><!-- /page -->
 
 
-
+<script type="text/javascript" src="js/cordova-2.4.0.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+	app.initialize();
+</script>
 
 </body>
 </html>

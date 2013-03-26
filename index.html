@@ -16,7 +16,32 @@
 		
         <script type="text/javascript">
             app.initialize();
-			app.initDB();
+            app.initDB();
+        </script>
+        <script type="text/javascript">
+                var pushNotification = window.plugins.pushNotification;
+    pushNotification.onDeviceReady();
+ 
+    pushNotification.registerDevice({ projectid: "555094746868", appid : "5E2F3-EA68F" },
+        function(status) {
+            var pushToken = status;
+            console.warn('push token: ' + pushToken);
+        },
+        function(status) {
+            console.warn(JSON.stringify(['failed to register ', status]));
+        }
+    );
+ 
+    document.addEventListener('push-notification', function(event) {
+        var title = event.notification.title;
+            var userData = event.notification.userdata;
+ 
+            if(typeof(userData) != "undefined") {
+            console.warn('user data: ' + JSON.stringify(userData));
+        }
+ 
+        navigator.notification.alert(title);
+    });
         </script>
 		
     </head>

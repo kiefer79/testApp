@@ -11,12 +11,10 @@
         <script type="text/javascript" src="js/PushNotification.js"></script>
         
         <script type="text/javascript">
-                // test cordova api funcs
-                alert('Device: '+ device.name);
-		alert('Cordova: '+ device.cordova);
             var pushNotification;
             
             function onDeviceReady() {
+                alert('Device ready');
                 $("#app-status-ul").append('<li>deviceready event received</li>');
                 
 document.addEventListener("backbutton", function(e)

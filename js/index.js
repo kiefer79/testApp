@@ -58,13 +58,13 @@ function onNotificationGCM(e) {
                 // Your GCM push server needs to know the regID before it can push to this device
                 // here is where you might want to send it the regID for later use.
                 alert('registration id = ' + e.regid);
-                $("#push-ol").append('<li>EVENT -> RECEIVED:' + e.msg + '</li>');
+                $("#push-ol").append('<li>EVENT -> RECEIVED:' + e.message + '</li>');
             }
         break;
         
         case 'message' :
-            $("#push-ol").append('<li>Message -> RECEIVED:' + e.msg + '</li>');
-            alert('message: ' + e.msg);
+            $("#push-ol").append('<li>Message -> RECEIVED:' + e.message + '</li>');
+            alert('message: ' + e.message);
         break;
         
         case 'error':

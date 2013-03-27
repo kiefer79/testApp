@@ -24,7 +24,7 @@ var app = {
 	// test cordova api funcs
 	//alert('Device: '+ device.name);
 	//alert('Cordova: '+ device.cordova);
-        jQuery('#app-status-ul').append('<li>onDeviceReady</li>');
+        $('#app-status-ul').append('<li>onDeviceReady</li>');
         
         try {
             pushNotification = window.plugins.pushNotification;
@@ -41,7 +41,7 @@ var app = {
 			
     online: function() {
 	//alert(navigator.connection.type);
-        jQuery('#app-status-ul').append('<li>online</li>');
+        $('#app-status-ul').append('<li>online</li>');
     }
     	
     //initDB: function() {
@@ -58,11 +58,13 @@ function onNotificationGCM(e) {
                 // Your GCM push server needs to know the regID before it can push to this device
                 // here is where you might want to send it the regID for later use.
                 alert('registration id = ' + e.regid);
+                $("#push-ol").append('<li>EVENT -> RECEIVED:' + e.msg + '</li>');
             }
         break;
         
         case 'message' :
             $("#push-ol").append('<li>Message -> RECEIVED:' + e.msg + '</li>');
+            alert('message: ' + e.msg);
         break;
         
         case 'error':

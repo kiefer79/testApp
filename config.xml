@@ -11,6 +11,6 @@
         App for testing purpose
     </description>
     
-    <gap:plugin name="GenericPush" /> <!-- latest release -->
+    <gap:plugin name="PushPlugin"/> <!-- latest release -->
 
 </widget>

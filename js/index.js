@@ -52,6 +52,27 @@ var app = {
 
 function onNotificationGCM(e) {
     $("#push-ol").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+    switch(e.event) {
+        case 'registered':
+            if(e.regid.length > 0) {
+                // Your GCM push server needs to know the regID before it can push to this device
+                // here is where you might want to send it the regID for later use.
+                alert('registration id = ' + e.regid);
+            }
+        break;
+        
+        case 'message' :
+            $("#push-ol").append('<li>Message -> RECEIVED:' + e.msg + '</li>');
+        break;
+        
+        case 'error':
+            alert('GCM error = ' + e.msg);
+        break;
+        
+        default:
+            alert('An unknown GCM event has occured');
+        break;
+    }
 }
 
 function successHandler (result) {

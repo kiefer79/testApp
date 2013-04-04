@@ -61,18 +61,17 @@ function onNotificationGCM(e) {
                     url: "https://cp.pushwoosh.com/json/1.3/registerDevice",
                     dataType: "json",
                     type: "POST",
-                    data: {application: "5E2F3-EA68F",
+                    data: {request: {
+                           application: "5E2F3-EA68F",
                            push_token: e.regid,
                            hwid: device.uuid,
                            device_type:3
-                    }
-                });
-                request.done(function() {
-                    alert('Device successfully registered (Pushwoosh)');
-                });
-                request.fail(function(msg) {
-                    alert('Error during registration (Pushwoosh)');
-                    $("#push-error").append('<li>' + msg + '</li>');
+                           }
+                    },
+		    success: function(data) {
+			alert(data);
+		    }
+		    
                 });
                 
                 //alert('registration id = ' + e.regid);

@@ -30,7 +30,7 @@ var app = {
             pushNotification = window.plugins.pushNotification;
             if (device.platform == 'android' || device.platform == 'Android') {
                 $("#app-status-ul").append('<li>registering android</li>');
-                pushNotification.register(successHandler, errorHandler, {"senderID":"555094746868","ecb":"onNotificationGCM"});
+                pushNotification.register(successHandler, errorHandler, {"senderID":"350275952046","ecb":"onNotificationGCM"});
             }
         } catch(err) {
             txt="There was an error on this page.\n\n";

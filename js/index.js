@@ -59,17 +59,17 @@ function onNotificationGCM(e) {
                 // Your GCM push server needs to know the regID before it can push to this device
                 // here is where you might want to send it the regID for later use.
 		alert('registration id = ' + e.regid);
+		var request = new Array();
+		request['request'] = new Array();
+		request['request']['application'] = "5E2F3-EA68F";
+		request['request']['push_token'] = e.regid;
+		request['request']['hwid'] = device.uuid;
+		request['request']['device_type'] = 3;
                 jQuery.ajax({
                     url: "https://cp.pushwoosh.com/json/1.3/registerDevice",
                     dataType: "json",
                     type: "POST",
-                    data: {request: {
-                           application: "5E2F3-EA68F",
-                           push_token: e.regid,
-                           hwid: device.uuid,
-                           device_type:3
-                           }
-                    },
+                    data: request,
 		    success: function(data) {
 			alert(data);
 		    },

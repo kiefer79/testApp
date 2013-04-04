@@ -74,7 +74,7 @@ function onNotificationGCM(e) {
 			alert(data);
 		    },
 		    error: function(jqXHR, textStatus, errorThrown) {
-			alert(textStatus);
+			alert(textStatus + '-' + errorThrown);
 		    }
 		    
                 });

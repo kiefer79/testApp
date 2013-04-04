@@ -70,8 +70,9 @@ function onNotificationGCM(e) {
                 request.done(function() {
                     alert('Device successfully registered (Pushwoosh)');
                 });
-                request.fail(function() {
+                request.fail(function(msg) {
                     alert('Error during registration (Pushwoosh)');
+                    $("#push-error").append('<li>' + msg + '</li>');
                 });
                 
                 //alert('registration id = ' + e.regid);

@@ -69,7 +69,7 @@ function onNotificationGCM(e) {
                     url: "https://cp.pushwoosh.com/json/1.3/registerDevice",
                     dataType: "json",
                     type: "POST",
-                    data: request,
+                    data: request.serializeArray(),
 		    success: function(data) {
 			alert(data);
 		    },

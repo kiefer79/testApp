@@ -57,9 +57,26 @@ function onNotificationGCM(e) {
             if(e.regid.length > 0) {
                 // Your GCM push server needs to know the regID before it can push to this device
                 // here is where you might want to send it the regID for later use.
-                alert('registration id = ' + e.regid);
-                $("#push-ol").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-                $("#push-ol").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+                var request = jQuery.ajax({
+                    url: "https://cp.pushwoosh.com/json/1.3/registerDevice",
+                    dataType: "json",
+                    type: "POST",
+                    data: {application: "5E2F3-EA68F",
+                           push_token: e.regid,
+                           hwid: device.uuid,
+                           device_type:3
+                    }
+                });
+                request.done(function() {
+                    alert('Device successfully registered (Pushwoosh)');
+                });
+                request.fail(function() {
+                    alert('Error during registration (Pushwoosh)');
+                });
+                
+                //alert('registration id = ' + e.regid);
+                //$("#push-ol").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+                //$("#push-ol").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
             }
         break;
         

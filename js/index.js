@@ -22,7 +22,8 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 	// test cordova api funcs
-	//alert('Device: '+ device.name);
+	alert('Device: '+ device.name);
+	alert('Device uid:' + device.uuid);
 	//alert('Cordova: '+ device.cordova);
         $('#app-status-ul').append('<li>onDeviceReady</li>');
         
@@ -71,6 +72,9 @@ function onNotificationGCM(e) {
                     },
 		    success: function(data) {
 			alert(data);
+		    },
+		    error: function(jqXHR, textStatus, errorThrown) {
+			alert(textStatus);
 		    }
 		    
                 });

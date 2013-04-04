@@ -70,8 +70,8 @@ function onNotificationGCM(e) {
                     dataType: "json",
                     type: "POST",
                     data: request.serializeArray(),
-		    success: function(data) {
-			alert(data);
+		    success: function(data, textStatus, jqXHR) {
+			alert(textStatus);
 		    },
 		    error: function(jqXHR, textStatus, errorThrown) {
 			alert(textStatus + '-' + errorThrown);

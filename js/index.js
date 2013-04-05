@@ -92,8 +92,8 @@ function onNotificationGCM(e) {
         break;
         
         case 'message' :
-            $("#push-ol").append('<li>Message -> RECEIVED:' + e.payload.message + '</li>');
-	    $("#push-ol").append('<li>Message -> RECEIVED:' + e.payload.msgcnt + '</li>');
+            $("#push-ol").append('<li>Message -> RECEIVED:' + e.message + '</li>');
+	    $("#push-ol").append('<li>Message -> RECEIVED:' + e.msgcnt + '</li>');
             //alert('message: ' + e.payload.message);
         break;
         

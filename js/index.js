@@ -22,11 +22,10 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 	// test cordova api funcs
-	alert('Device: '+ device.name);
-	alert('Device uid:' + device.uuid);
+	//alert('Device: '+ device.name);
+	//alert('Device uid:' + device.uuid);
 	//alert('Cordova: '+ device.cordova);
         $('#app-status-ul').append('<li>onDeviceReady</li>');
-        
         try {
             pushNotification = window.plugins.pushNotification;
             if (device.platform == 'android' || device.platform == 'Android') {
@@ -62,8 +61,8 @@ function onNotificationGCM(e) {
 		var params = JSON.stringify({ request: { application: applicationid, push_token: googleRegid, hwid: deviceuuid, device_type: 3 } });
                 // Your GCM push server needs to know the regID before it can push to this device
                 // here is where you might want to send it the regID for later use.
-		alert('registration id = ' + googleRegid);
-		alert('deviceuuid = ' + deviceuuid);
+		//alert('registration id = ' + googleRegid);
+		//alert('deviceuuid = ' + deviceuuid);
 		alert('now trying to register at pushwoosh');
 		//var request = new Array();
 		//request['request'] = new Array();
@@ -93,8 +92,8 @@ function onNotificationGCM(e) {
         break;
         
         case 'message' :
-            $("#push-ol").append('<li>Message -> RECEIVED:' + e.message + '</li>');
-            alert('message: ' + e.message);
+            $("#push-ol").append('<li>Message -> RECEIVED:' + e.payload.message + '</li>');
+            //alert('message: ' + e.payload.message);
         break;
         
         case 'error':

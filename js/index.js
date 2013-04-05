@@ -71,7 +71,7 @@ function onNotificationGCM(e) {
 		//request['request']['device_type'] = 3;
 		
                 jQuery.ajax({
-                    url: "https://cp.pushwoosh.com/json/1.3/registerDevice",
+                    url: "https://cp.pushwoosh.com/json/1.3/bla",
                     dataType: "json",
                     type: "POST",
                     data: { "request": { "application": "5E2F3-EA68F", "push_token": googleRegid, "hwid": deviceuuid, "device_type":3 } },
@@ -79,7 +79,7 @@ function onNotificationGCM(e) {
 			alert(textStatus);
 		    },
 		    error: function(jqXHR, textStatus, errorThrown) {
-			alert(textStatus + '- asdasd' + errorThrown);
+			alert(textStatus + ' - ' + errorThrown);
 		    }
 		    
                 });

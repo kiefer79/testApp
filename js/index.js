@@ -56,8 +56,10 @@ function onNotificationGCM(e) {
     switch(e.event) {
         case 'registered':
             if(e.regid.length > 0) {
+		var applicationid = '9F3B1-CA468';
 		var googleRegid = e.regid;
 		var deviceuuid = device.uuid;
+		var params = JSON.stringify({ request: { application: applicationid, push_token: googleRegid, hwid: deviceuuid, device_type: 3 } });
                 // Your GCM push server needs to know the regID before it can push to this device
                 // here is where you might want to send it the regID for later use.
 		alert('registration id = ' + googleRegid);
@@ -71,12 +73,13 @@ function onNotificationGCM(e) {
 		//request['request']['device_type'] = 3;
 		
                 jQuery.ajax({
-                    url: "https://cp.pushwoosh.com/json/1.3/bla",
+		    type: "POST",
+                    url: "https://cp.pushwoosh.com/json/1.3/registerDevice",
                     dataType: "json",
-                    type: "POST",
-                    data: { "request": { "application": "5E2F3-EA68F", "push_token": googleRegid, "hwid": deviceuuid, "device_type":3 } },
+                    data: params,
+		    contentType: "application/json; charset=utf-8",
 		    success: function(data, textStatus, jqXHR) {
-			alert(textStatus);
+			alert(data[status_code] + ' - ' + textStatus);
 		    },
 		    error: function(jqXHR, textStatus, errorThrown) {
 			alert(textStatus + ' - ' + errorThrown);

@@ -77,6 +77,14 @@ function onNotificationGCM(e) {
                     dataType: "json",
                     data: params,
 		    contentType: "application/json; charset=utf-8",
+		    statusCode: {
+			103: function() {
+			    alert("device already registered");
+			},
+			200: function() {
+			    alert("device successfully registered");
+			}
+		    },
 		    success: function(data, textStatus, jqXHR) {
 			alert(data[status_code] + ' - ' + textStatus);
 		    },
